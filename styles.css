@@ -1,4 +1,9 @@
 h1 {
-  color: LightGrey;
+  color: Grey;
   text-align: center;
+}
+
+body{
+  background: LightBlue;
+
 }
