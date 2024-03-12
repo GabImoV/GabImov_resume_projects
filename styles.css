@@ -1,6 +1,5 @@
 h1 {
   color: Grey;
-  background-color: DarkBlue;
   text-align: center;
   border-margin: 10x 0 10x 0;
 }
@@ -14,7 +13,7 @@ body {
  font-family: "Trebuchet MS";
  color: white;
 }
-#linkedin{
+a{
  background-color: white;
  font-size: 20px;
  border-radius: 10px;
