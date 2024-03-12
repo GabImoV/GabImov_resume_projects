@@ -13,5 +13,8 @@ body{
   margin: auto;
   height: 50px;
   weight: 100px;
+  background-color: LightGray;
+  border: 10px;
+  text-align: center;
 
 }
