@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Site da Letícia</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Prorata</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <audio autoplay loop id="background-audio">
-    <source src="2.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio HTML5.
-  </audio>
-
-  <div id="prelude">
-    <button id="healing-button">Clique aqui para curar totalmente a depressão</button>
-  </div>
-
-  <div id="video-content">
-    <video autoplay loop id="video-background">
-      <source src="1.mp4" type="video/mp4">
-      Seu navegador não suporta vídeos em HTML5.
-    </video>
-
-    <div id="text-content">
-      <h1 id="text">Ficar depressiva é paia Letícia</h1>
+    <h2>Calculadora de Prorata</h2>
+    <div class="calculator">
+        <div>
+            <label for="valorTotal">Valor Total do Plano:</label>
+            <input type="number" id="valorTotal">
+        </div>
+        <div>
+            <label for="quantidadeDias">Quantidade de Dias:</label>
+            <input type="number" id="quantidadeDias">
+        </div>
+        <div>
+            <label for="valorMulta">Valor Multa Fidelidade:</label>
+            <input type="number" id="valorMulta">
+        </div>
+        <button onclick="calcularProrata()">Calcular</button>
+        <div>
+            <label for="resultado">Resultado:</label>
+            <input type="text" id="resultado" readonly>
+        </div>
     </div>
-  </div>
 
-  <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
