@@ -1,15 +1,9 @@
-window.onload = function() {
-  var audio = document.getElementById("background-audio");
-  var button = document.getElementById("healing-button");
-  var videoContent = document.getElementById("video-content");
-  var prelude = document.getElementById("prelude");
+function calcularProrata() {
+    var valorTotal = parseFloat(document.getElementById('valorTotal').value);
+    var quantidadeDias = parseFloat(document.getElementById('quantidadeDias').value);
+    var valorMulta = parseFloat(document.getElementById('valorMulta').value);
 
-  button.onclick = function() {
-    audio.pause(); // Pausa a música ao clicar no botão
-    prelude.style.display = "none"; // Esconde o conteúdo de introdução
-    videoContent.style.display = "block"; // Mostra o conteúdo do vídeo
-  };
+    var resultado = ((valorTotal / 30) * quantidadeDias) + valorMulta;
 
-  // Add code to play the audio automatically here (e.g., after checking if loaded)
-  // audio.play(); // Uncomment this if you want autoplay
-};
+    document.getElementById('resultado').value = resultado.toFixed(2);
+}
