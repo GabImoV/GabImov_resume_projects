@@ -11,23 +11,33 @@
     <div class="calculator">
         <div>
             <label for="valorTotal">Valor Total do Plano:</label>
-            <input type="number" id="valorTotal">
+            <input type="number" id="valorTotal" onchange="calcularProrata()">
         </div>
         <div>
             <label for="quantidadeDias">Quantidade de Dias:</label>
-            <input type="number" id="quantidadeDias">
+            <input type="number" id="quantidadeDias" onchange="calcularProrata()">
         </div>
         <div>
             <label for="valorMulta">Valor Multa Fidelidade:</label>
-            <input type="number" id="valorMulta">
+            <input type="number" id="valorMulta" onchange="calcularProrata()">
         </div>
-        <button onclick="calcularProrata()">Calcular</button>
         <div>
             <label for="resultado">Resultado:</label>
-            <p id="resultado"></p> <!-- Alteração aqui -->
+            <p id="resultado">Resultado: </p>
         </div>
     </div>
     <p>Feito por Gabriel Dias</p>
-    <script src="script.js"></script>
+
+    <script>
+        function calcularProrata() {
+            var valorTotal = parseFloat(document.getElementById('valorTotal').value.replace(",", "."));
+            var quantidadeDias = parseFloat(document.getElementById('quantidadeDias').value.replace(",", "."));
+            var valorMulta = parseFloat(document.getElementById('valorMulta').value.replace(",", "."));
+
+            var resultado = ((valorTotal / 30) * quantidadeDias) + valorMulta;
+
+            document.getElementById('resultado').innerText = "Resultado: R$ " + resultado.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+        }
+    </script>
 </body>
 </html>
