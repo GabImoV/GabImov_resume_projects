@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Prioridades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="bc-section" class="form-group">
+            <label for="bc-input">Insira a BC:</label>
+            <input type="text" id="bc-input">
+            <button onclick="saveBC()">Salvar BC</button>
+        </div>
+        <div id="menu-section" class="hidden">
+            <button onclick="showForm('reparo')">Priorizar Reparo</button>
+            <button onclick="showForm('mudend')">Priorizar Mudend</button>
+            <button onclick="showForm('erro')">Erro na Ligação/Sistema Falhando</button>
+            <button onclick="window.open('https://showcodecase.notion.site/Passo-a-passo-em-sistema-9e96dacc7fa44ecb972583e15bbcee8f', '_blank')">Passo a Passo</button>
+        </div>
+        <div id="reparo-form" class="hidden">
+            <div class="form-group">
+                <label for="uf-reparo">UF:</label>
+                <select id="uf-reparo">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <!-- Adicione todas as UFs aqui -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cidade-reparo">Cidade:</label>
+                <input type="text" id="cidade-reparo">
+            </div>
+            <div class="form-group">
+                <label for="cpf-reparo">CPF/CNPJ:</label>
+                <input type="text" id="cpf-reparo">
+            </div>
+            <div class="form-group">
+                <label for="titular-reparo">Titular:</label>
+                <input type="text" id="titular-reparo">
+            </div>
+            <div class="form-group">
+                <label for="ativo-reparo">Número do Ativo:</label>
+                <input type="text" id="ativo-reparo">
+            </div>
+            <div class="form-group">
+                <label for="reparo-reparo">Número do Reparo:</label>
+                <input type="text" id="reparo-reparo">
+            </div>
+            <div class="form-group">
+                <label for="ba-reparo">Número do BA:</label>
+                <input type="text" id="ba-reparo">
+            </div>
+            <div class="form-group">
+                <label for="reclamacao-reparo">Reclamação do Cliente:</label>
+                <textarea id="reclamacao-reparo"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="telefone-reparo">Telefone de Contato:</label>
+                <input type="text" id="telefone-reparo">
+            </div>
+            <button onclick="sendReparo()">Enviar</button>
+        </div>
+        <div id="mudend-form" class="hidden">
+            <div class="form-group">
+                <label for="nome-mudend">Nome:</label>
+                <input type="text" id="nome-mudend">
+            </div>
+            <div class="form-group">
+                <label for="cpf-mudend">CPF:</label>
+                <input type="text" id="cpf-mudend">
+            </div>
+            <div class="form-group">
+                <label for="contato-mudend">Nº de Contato:</label>
+                <input type="text" id="contato-mudend">
+                <label><input type="checkbox" id="whatsapp1-mudend"> Possui WhatsApp</label>
+            </div>
+            <div class="form-group">
+                <label for="contato2-mudend">Nº de Contato 2:</label>
+                <input type="text" id="contato2-mudend">
+                <label><input type="checkbox" id="whatsapp2-mudend"> Possui WhatsApp</label>
+            </div>
+            <div class="form-group">
+                <label for="pedido-mudend">Nº do Pedido:</label>
+                <input type="text" id="pedido-mudend">
+            </div>
+            <div class="form-group">
+                <label for="ba-mudend">Nº do BA:</label>
+                <input type="text" id="ba-mudend">
+            </div>
+            <div class="form-group">
+                <label for="descricao-mudend">Descrição:</label>
+                <textarea id="descricao-mudend"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="critico-mudend">Cliente Crítico:</label>
+                <select id="critico-mudend">
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="checklist-mudend">Checklist Executado:</label>
+                <input type="text" id="checklist-mudend" value="Sim" readonly>
+            </div>
+            <div class="form-group">
+                <label for="operacao-mudend">Operação:</label>
+                <input type="text" id="operacao-mudend" value="Retenção" readonly>
+            </div>
+            <button onclick="sendMudend()">Enviar</button>
+        </div>
+        <div id="erro-form" class="hidden">
+            <div class="form-group">
+                <label for="bc-erro">BC:</label>
+                <input type="text" id="bc-erro" readonly>
+            </div>
+            <div class="form-group">
+                <label for="binado-erro">Binado:</label>
+                <input type="text" id="binado-erro">
+            </div>
+            <div class="form-group">
+                <label for="descricao-erro">Descrição:</label>
+                <textarea id="descricao-erro"></textarea>
+            </div>
+            <button onclick="sendErro()">Enviar</button>
+        </div>
+    </div>
+    <script>
+        function saveBC() {
+            const bc = document.getElementById('bc-input').value;
+            if (bc) {
+                localStorage.setItem('bc', bc);
+                alert('BC salva com sucesso!');
+                checkBC();
+            } else {
+                alert('Por favor, insira uma BC.');
+            }
+        }
+
+        function checkBC() {
+            const savedBC = localStorage.getItem('bc');
+            if (savedBC) {
+                const changeBC = confirm(`Deseja mudar a BC atual (${savedBC})?`);
+                if (changeBC) {
+                    document.getElementById('bc-section').classList.remove('hidden');
+                } else {
+                    document.getElementById('bc-section').classList.add('hidden');
+                    document.getElementById('menu-section').classList.remove('hidden');
+                    fillBC(savedBC);
+                }
+            } else {
+                document.getElementById('bc-section').classList.remove('hidden');
+            }
+        }
+
+        function fillBC(bc) {
+            document.getElementById('bc-erro').value = bc;
+        }
+
+        function showForm(formId) {
+            document.getElementById('reparo-form').classList.add('hidden');
+            document.getElementById('mudend-form').classList.add('hidden');
+            document.getElementById('erro-form').classList.add('hidden');
+            document.getElementById(`${formId}-form`).classList.remove('hidden');
+        }
+
+        function sendReparo() {
+            const uf = document.getElementById('uf-reparo').value;
+            const cidade = document.getElementById('cidade-reparo').value;
+            const cpf = document.getElementById('cpf-reparo').value;
+            const titular = document.getElementById('titular-reparo').value;
+            const ativo = document.getElementById('ativo-reparo').value;
+            const reparo = document.getElementById('reparo-reparo').value;
+            const ba = document.getElementById('ba-reparo').value;
+            const reclamacao = document.getElementById('reclamacao-reparo').value;
+            const telefone = document.getElementById('telefone-reparo').value;
+
+            const message = `Priorizar Reparo:\nUF: ${uf}\nCidade: ${cidade}\nCPF/CNPJ: ${cpf}\nTitular: ${titular}\nNúmero do Ativo: ${ativo}\nNúmero do Reparo: ${reparo}\nNúmero do BA: ${ba}\nReclamação do Cliente: ${reclamacao}\nTelefone de Contato: ${telefone}`;
+            sendWhatsAppMessage(message);
+        }
+
+        function sendMudend() {
+            const nome = document.getElementById('nome-mudend').value;
+            const cpf = document.getElementById('cpf-mudend').value;
+            const contato = document.getElementById('contato-mudend').value;
+            const whatsapp1 = document.getElementById('whatsapp1-mudend').checked ? 'Sim' : 'Não';
+            const contato2 = document.getElementById('contato2-mudend').value;
+            const whatsapp2 = document.getElementById('whatsapp2-mudend').checked ? 'Sim' : 'Não';
+            const pedido = document.getElementById('pedido-mudend').value;
+            const ba = document.getElementById('ba-mudend').value;
+            const descricao = document.getElementById('descricao-mudend').value;
+            const critico = document.getElementById('critico-mudend').value;
+            const checklist = document.getElementById('checklist-mudend').value;
+            const operacao = document.getElementById('operacao-mudend').value;
+
+            const message = `Priorizar Mudend:\nNome: ${nome}\nCPF: ${cpf}\nNº de Contato: ${contato} (WhatsApp: ${whatsapp1})\nNº de Contato 2: ${contato2} (WhatsApp: ${whatsapp2})\nNº do Pedido: ${pedido}\nNº do BA: ${ba}\nDescrição: ${descricao}\nCliente Crítico: ${critico}\nChecklist Executado: ${checklist}\nOperação: ${operacao}`;
+            sendWhatsAppMessage(message);
+        }
+
+        function sendErro() {
+            const bc = document.getElementById('bc-erro').value;
+            const binado = document.getElementById('binado-erro').value;
+            const descricao = document.getElementById('descricao-erro').value;
+
+            const message = `Erro na Ligação/Sistema Falhando:\nBC: ${bc}\nBinado: ${binado}\nDescrição: ${descricao}`;
+            sendWhatsAppMessage(message);
+        }
+
+        function sendWhatsAppMessage(message) {
+            const whatsappNumber = '5581999999999'; // Substitua pelo número do grupo de WhatsApp
+            const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Verifica a BC ao carregar a página
+        window.onload = checkBC;
+    </script>
+</body>
+</html>
